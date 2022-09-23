@@ -1,0 +1,6 @@
+<script>
+var input="komal";
+var output;
+output = input.split(' ').reverse().join(' ');
+console.log(output);
+</script>

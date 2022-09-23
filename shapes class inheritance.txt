@@ -1,0 +1,124 @@
+import java.util.*;
+
+// ye koi optimized approach nhi hai 
+abstract class Quadrilateral {
+   double side1;
+   double side2;
+   double side3;
+   double side4;
+
+   public Quadrilateral(double side1, double side2, double side3, double side4) {
+       this.side1 = side1;
+       this.side2 = side2;
+       this.side3 = side3;
+       this.side4 = side4;
+   }
+
+   protected abstract double getArea();
+
+   protected double getPerimeter() {
+       return (side1+side2+side3+side4);
+   }
+}
+
+
+class Parallelogram extends Quadrilateral {
+
+    Parallelogram(double side1, double side2, double side3){
+        super(side1, side2, side3, side3) ;
+    }
+
+    public double getArea(){
+        return this.side1 * this.side3 ;
+    }
+
+    public double getPerimeter(){
+        return 2 * (this.side1 + this.side2) ;
+    }
+}
+
+
+class Rhombus extends Parallelogram {
+
+    Rhombus(double side1, double side2) {
+        super(side1, side2, side2) ;
+    }
+
+    public double getArea(){
+        return (this.side1 * this.side3) ;
+    }
+
+    public double getPerimeter(){
+        return 4 * side1 ;
+    }
+   
+}
+
+
+class Rectangle extends Parallelogram {
+
+    Rectangle(double side1, double side2) {
+        super(side1, side2, side2) ;
+    }
+
+    public double getArea(){
+        return this.side1 * this.side2 ;
+    }
+
+    public double getPerimeter(){
+        return super.getPerimeter();
+    }
+  
+}
+
+class Square extends Rhombus {
+
+    Square(double side1){
+        super(side1, side1) ;
+    }
+
+    public double getArea(){
+        return (this.side1 * this.side1) ;
+    }
+
+    public double getPerimeter(){
+        return (4 * this.side1) ;
+    }
+   
+}
+
+
+
+
+class Main {
+   public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in) ;
+
+        double a1 = sc.nextDouble();
+        double a2 = sc.nextDouble();
+        double a3 = sc.nextDouble();
+        double a4 = sc.nextDouble();
+        double a5 = sc.nextDouble();
+        double a6 = sc.nextDouble();
+        double a7 = sc.nextDouble();
+        double a8 = sc.nextDouble();
+        
+        sc.close() ;
+
+        if( a1<0 || a2<0 || a3<0 || a4<0 || a5<0 || a6<0 || a7<0 || a8<0) {
+            System.out.println("Length of a side cannot be negative. Please Enter a positive integer") ;
+        }
+        else{
+            Parallelogram p = new Parallelogram(a1, a2, a3) ;
+            Rhombus rs = new Rhombus(a4, a5) ;
+            Rectangle r = new Rectangle(a6, a7)  ;
+            Square sq = new Square(a8) ;
+
+            System.out.println("Perimeter of Parallelogram is " + p.getPerimeter() + " and Area of Parallelogram is " + p.getArea()) ;
+            System.out.println("Perimeter of Rhombus is " + rs.getPerimeter() + " and Area of Rhombus is " + rs.getArea()) ;
+            System.out.println("Perimeter of Rectangle is " + r.getPerimeter() + " and Area of Rectangle is " + r.getArea()) ;
+            System.out.println("Perimeter of Square is " + sq.getPerimeter() + " and Area of Square is " + sq.getArea()) ;
+        }
+   }
+}
